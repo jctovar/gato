@@ -1,20 +1,17 @@
 <ion-header>
   <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>Inicio</ion-title>
+    <ion-title>Módulos de {{ title | titlecase }}</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content>
+<ion-content >
   <ion-list>
     <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
       <ion-avatar item-start>
         <img src="../assets/imgs/avatar_1.png">
       </ion-avatar>
-      <h2>{{ item.alternative }}</h2>
-      <p>{{ item.modality }}</p>
+      <h2>{{ item.fullname | titlecase }}</h2>
+      <p>{{ item.alternative }} {{ item.module }}</p>
     </button>
   </ion-list>
 </ion-content>

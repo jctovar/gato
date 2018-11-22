@@ -1,5 +1,8 @@
 {
   "name": "admin",
-  "integrations": {},
-  "type": "ionic-angular"
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular",
+  "pro_id": "a366a5f1"
 }

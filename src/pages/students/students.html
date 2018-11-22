@@ -1,9 +1,6 @@
 <ion-header>
   <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>Inicio</ion-title>
+    <ion-title>students</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -13,8 +10,9 @@
       <ion-avatar item-start>
         <img src="../assets/imgs/avatar_1.png">
       </ion-avatar>
-      <h2>{{ item.alternative }}</h2>
-      <p>{{ item.modality }}</p>
+      <h2>{{ item.firstname | titlecase }} {{ item.lastname | titlecase }}</h2>
+      <h3>{{ item.username }}</h3>
+      <p>{{ item.email }}</p>
     </button>
   </ion-list>
 </ion-content>

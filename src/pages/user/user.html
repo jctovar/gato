@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Datos del usuario</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-item>
+      <ion-avatar item-start>
+          <img [src]="user.profileimageurl">
+      </ion-avatar>
+      <h2>{{ user.firstname | uppercase }} {{ user.lastname | uppercase }}</h2>
+      <h3>{{ user.username }}</h3>
+      <p><i>{{ user.email }}</i></p>
+    </ion-item>
+    <ion-card-content>
+      <ul>
+        <li>Departamento: {{ user.department }}</li>
+        <li>Suspendido: {{ user.suspended }}</li>
+        <li>Primer acceso: {{ user.firstaccess * 1000 | date:'dd/MM/yyyy HH:mm' }}</li>
+        <li>Ultimo acceso: {{ user.lastaccess * 1000 | date:'dd/MM/yyyy HH:mm' }}</li>
+      </ul>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
