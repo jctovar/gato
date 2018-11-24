@@ -1,17 +1,22 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Alumnos del {{ title }}</ion-title>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Buscar alumno</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
+  <ion-searchbar (ionInput)="searchStudent($event)" debounce="1000" animated="true" placeholder="Buscar por nombre"></ion-searchbar>
+  <ion-spinner *ngIf="loading" class="ion-spinner"></ion-spinner>
   <ion-list>
     <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
       <ion-avatar item-start>
         <img src="{{ item.email | gravatar:'robohash' }}">
       </ion-avatar>
       <h2>{{ item.firstname }} {{ item.lastname }}</h2>
-      <h3>{{ item.username }}</h3>
+      <h3><b>{{ item.username }}</b> [{{ item.plan_alternative }}]</h3>
       <p><i>{{ item.email }}</i></p>
     </button>
   </ion-list>

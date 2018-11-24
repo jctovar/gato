@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="mx.com.cuatrocolibri.gato" version="0.1.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>Gat0 admin</name>
+    <name>GatO admin</name>
     <description>Sistema de consulta y administración</description>
     <author email="jctovar@cuatrocolibri.com.mx" href="https://www.cuatrocolibri.com.mx/">Cuatro Colibri SA de CV</author>
     <content src="index.html" />
@@ -83,8 +83,6 @@
     <plugin name="cordova-plugin-ionic-keyboard" spec="^2.0.5" />
     <plugin name="cordova-plugin-statusbar" spec="^2.4.2" />
     <plugin name="cordova-plugin-nativestorage" spec="2.3.2" />
-    <engine name="android" spec="7.1.2" />
-    <engine name="osx" spec="4.0.2" />
     <plugin name="cordova-plugin-ionic" spec="5.2.7">
         <variable name="APP_ID" value="a366a5f1" />
         <variable name="CHANNEL_NAME" value="Master" />
@@ -93,4 +91,6 @@
         <variable name="MAX_STORE" value="2" />
         <variable name="MIN_BACKGROUND_DURATION" value="30" />
     </plugin>
+    <engine name="android" spec="7.1.2" />
+    <engine name="osx" spec="4.0.2" />
 </widget>

@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Datos del alumno</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <div >
+    <ion-card ion-item *ngFor="let item of items">
+      <ion-item>
+        <ion-avatar item-start>
+            <img src="{{ item.email | gravatar:'robohash' }}">
+        </ion-avatar>
+        <h2>{{ item.firstname }} {{ item.lastname }}</h2>
+        <h3>{{ item.username }}</h3>
+        <p><i>{{ item.email }}</i></p>
+      </ion-item>
+      <ion-card-content>
+        <ul>
+          <li>Carrera: {{ item.plan }}</li>
+          <li>Modalidad: {{ item.mode }}</li>
+          <li>Ingreso: {{ item.generation }}</li>
+          <li>Contraseña: {{ item.curp | curp:'password' }}</li>
+          <li>Genero: {{ item.curp | curp:'gender' }}</li>
+          <li>CURP: {{ item.curp }}</li>
+          <li>Inscripciones actuales: {{ item.inscriptions }}</li>
+        </ul>
+      </ion-card-content>
+    </ion-card>
+  </div>
+  <ion-fab right bottom>
+    <button ion-fab color="danger"><ion-icon name="arrow-dropleft"></ion-icon></button>
+    <ion-fab-list side="left">
+      <button ion-fab><ion-icon name="cloud-download"></ion-icon></button>
+      <button ion-fab><ion-icon name="unlock"></ion-icon></button>
+    </ion-fab-list>
+  </ion-fab>
+</ion-content>

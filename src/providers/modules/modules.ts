@@ -21,6 +21,14 @@ export class ModulesProvider {
   }
 
   getStudents(career: string, module: string, group: string) {
-    return this.http.get('https://galadriel.ired.unam.mx/gato/api/courses/students/' + career + '/' + module + '/' + group);
+      return this.http.get('https://galadriel.ired.unam.mx/gato/api/courses/students/' + career + '/' + module + '/' + group);
+  }
+
+  getStudent(id: any) {
+    return this.http.get('http://galadriel.ired.unam.mx/gato/api/students/id/' + id);
+  }
+
+  getSearchStudent(name: string) {
+    return this.http.get('https://galadriel.ired.unam.mx/gato/api/students/name/' + name);
   }
 }

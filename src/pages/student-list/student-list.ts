@@ -5,29 +5,35 @@ import { ModulesProvider } from '../../providers/modules/modules';
 
 @IonicPage()
 @Component({
-  selector: 'page-students',
-  templateUrl: 'students.html',
+  selector: 'page-student-list',
+  templateUrl: 'student-list.html',
 })
-export class StudentsPage {
+export class StudentListPage {
+  loading: Boolean;
   items: any;
-  career: any;
-  title: string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public modulesProvider: ModulesProvider) {
-    this.career = navParams.get('item');
-    this.title = this.career.module + ' grupo ' + this.career.group1;
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad StudentsPage');
-    this.modulesProvider.getStudents(this.career.career, this.career.module, this.career.group1)
+    console.log('ionViewDidLoad StudentListPage');
+  }
+
+  searchStudent(query: any) {
+    this.loading = true;
+    const val = query.target.value;
+
+    this.modulesProvider.getSearchStudent(val)
     .subscribe(
       (data) => { // Success
         console.log(JSON.stringify(data));
         this.items = data;
+        this.loading = false;
       },
       (error) =>{
         console.error(JSON.stringify(error));
+        this.items = [];
+        this.loading = false;
       }
     )
   }

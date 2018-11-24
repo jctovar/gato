@@ -11,6 +11,11 @@ import { SearchPage } from '../pages/search/search';
 import { ModulesPage } from '../pages/modules/modules';
 import { GroupsPage } from '../pages/groups/groups';
 import { StudentsPage } from '../pages/students/students';
+import { StudentPage } from '../pages/student/student';
+import { StudentListPage } from '../pages/student-list/student-list';
+
+import { GravatarPipe } from '../pipes/gravatar/gravatar';
+import { CurpPipe } from '../pipes/curp/curp';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -28,6 +33,10 @@ import { ModulesProvider } from '../providers/modules/modules';
     ModulesPage,
     GroupsPage,
     StudentsPage,
+    StudentPage,
+    StudentListPage,
+    GravatarPipe,
+    CurpPipe
   ],
   imports: [
     BrowserModule,
@@ -44,6 +53,8 @@ import { ModulesProvider } from '../providers/modules/modules';
     ModulesPage,
     GroupsPage,
     StudentsPage,
+    StudentPage,
+    StudentListPage,
   ],
   providers: [
     StatusBar,

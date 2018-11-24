@@ -5,6 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
+import { StudentListPage } from '../pages/student-list/student-list';
 
 @Component({
   templateUrl: 'app.html'
@@ -21,7 +22,8 @@ export class MyApp {
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Inicio', component: HomePage },
+      { title: 'Licenciaturas', component: HomePage },
+      { title: 'Alumnos', component: StudentListPage },
       { title: 'Usuarios', component: ListPage }
     ];
 
@@ -31,7 +33,8 @@ export class MyApp {
     this.platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
-      this.statusBar.styleDefault();
+      this.statusBar.backgroundColorByHexString('#0066ff');
+      this.statusBar.overlaysWebView(false);
       this.splashScreen.hide();
     });
   }
