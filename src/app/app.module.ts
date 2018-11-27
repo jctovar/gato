@@ -5,9 +5,8 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
+import { CareersPage } from '../pages/careers/careers';
 import { UserPage } from '../pages/user/user';
-import { SearchPage } from '../pages/search/search';
 import { ModulesPage } from '../pages/modules/modules';
 import { GroupsPage } from '../pages/groups/groups';
 import { StudentsPage } from '../pages/students/students';
@@ -16,28 +15,28 @@ import { StudentListPage } from '../pages/student-list/student-list';
 
 import { GravatarPipe } from '../pipes/gravatar/gravatar';
 import { CurpPipe } from '../pipes/curp/curp';
+import { EmailPipe } from '../pipes/email/email';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { StudentServiceProvider } from '../providers/student-service/student-service';
-import { UsersProvider } from '../providers/users/users';
-import { ModulesProvider } from '../providers/modules/modules';
+
 import { MoodleServiceProvider } from '../providers/moodle-service/moodle-service';
+import { GatoServiceProvider } from '../providers/gato-service/gato-service';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    ListPage,
+    CareersPage,
     UserPage,
-    SearchPage,
     ModulesPage,
     GroupsPage,
     StudentsPage,
     StudentPage,
     StudentListPage,
     GravatarPipe,
-    CurpPipe
+    CurpPipe,
+    EmailPipe
   ],
   imports: [
     BrowserModule,
@@ -48,9 +47,8 @@ import { MoodleServiceProvider } from '../providers/moodle-service/moodle-servic
   entryComponents: [
     MyApp,
     HomePage,
-    ListPage,
+    CareersPage,
     UserPage,
-    SearchPage,
     ModulesPage,
     GroupsPage,
     StudentsPage,
@@ -61,10 +59,8 @@ import { MoodleServiceProvider } from '../providers/moodle-service/moodle-servic
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    StudentServiceProvider,
-    UsersProvider,
-    ModulesProvider,
-    MoodleServiceProvider
+    MoodleServiceProvider,
+    GatoServiceProvider
   ]
 })
 export class AppModule {}

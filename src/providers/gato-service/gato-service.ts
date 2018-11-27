@@ -2,10 +2,10 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable()
-export class ModulesProvider {
+export class GatoServiceProvider {
 
   constructor(public http: HttpClient) {
-    console.log('Hello ModulesProvider Provider');
+    console.log('Hello GatoServiceProvider Provider');
   }
 
   getCareers() {

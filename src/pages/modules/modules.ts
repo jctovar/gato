@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { GroupsPage } from '../../pages/groups/groups';
-import { ModulesProvider } from '../../providers/modules/modules';
+import { GatoServiceProvider } from '../../providers/gato-service/gato-service';
 
 
 @IonicPage()
@@ -14,14 +14,14 @@ export class ModulesPage {
   career: any;
   title: string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public modulesProvider: ModulesProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public gatoServiceProvider: GatoServiceProvider) {
     this.career = navParams.get('item');
     this.title = this.career.name;
   }
 
   ionViewDidLoad(){
     console.log('ionViewDidLoad ModulesPage');
-    this.modulesProvider.getModules(this.career.name)
+    this.gatoServiceProvider.getModules(this.career.name)
     .subscribe(
       (data) => { // Success
         this.items = data;

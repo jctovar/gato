@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { ModulesPage } from '../../pages/modules/modules';
-import { ModulesProvider } from '../../providers/modules/modules';
+import { GatoServiceProvider } from '../../providers/gato-service/gato-service';
 
 @Component({
   selector: 'page-home',
@@ -10,27 +9,10 @@ import { ModulesProvider } from '../../providers/modules/modules';
 export class HomePage {
   items: any;
 
-  constructor(public navCtrl: NavController, public modulesProvider: ModulesProvider) {
+  constructor(public navCtrl: NavController, public gatoServiceProvider: GatoServiceProvider) {
 
   }
 
-  ionViewDidLoad(){
-    this.modulesProvider.getCareers()
-    .subscribe(
-      (data) => { // Success
-        this.items = data;
-      },
-      (error) =>{
-        console.error(JSON.stringify(error));
-      }
-    )
-  }
-
-  itemTapped(event, item) {
-    // That's right, we're pushing to ourselves!
-    this.navCtrl.push(ModulesPage, {
-      item: item
-    });
-  }
+  
 
 }

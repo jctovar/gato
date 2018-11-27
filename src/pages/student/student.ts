@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController, ToastController, FabContainer } from 'ionic-angular';
-import { ModulesProvider } from '../../providers/modules/modules';
+import { GatoServiceProvider } from '../../providers/gato-service/gato-service';
 import { MoodleServiceProvider } from '../../providers/moodle-service/moodle-service';
 
 @IonicPage()
@@ -14,7 +14,7 @@ export class StudentPage {
   moodleUser: any;
   enrollment: boolean = true;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public toastCtrl: ToastController, public moodleServiceProvider: MoodleServiceProvider, public modulesProvider: ModulesProvider, public alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public toastCtrl: ToastController, public moodleServiceProvider: MoodleServiceProvider, public gatoServiceProvider: GatoServiceProvider, public alertCtrl: AlertController) {
     this.user = navParams.get('item');
     console.log(this.user.username);
   }
@@ -22,7 +22,7 @@ export class StudentPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad StudentPage');
     
-    this.modulesProvider.getStudent(this.user.id)
+    this.gatoServiceProvider.getStudent(this.user.id)
     .subscribe(
       (data) => { // Success
         console.log(JSON.stringify(data));

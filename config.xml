@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="mx.com.cuatrocolibri.gato" version="0.1.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>GatO admin</name>
+<widget id="mx.com.cuatrocolibri.gato" version="0.1.5" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>Gato admin</name>
     <description>Sistema de consulta y administración</description>
     <author email="jctovar@cuatrocolibri.com.mx" href="https://www.cuatrocolibri.com.mx/">Cuatro Colibri SA de CV</author>
     <content src="index.html" />
