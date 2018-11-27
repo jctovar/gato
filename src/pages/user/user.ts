@@ -11,7 +11,7 @@ export class UserPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.user = navParams.get('item');
-    console.log(JSON.stringify(this.user));
+    console.log('hola mundo:' + JSON.stringify(this.user));
   }
 
   ionViewDidLoad() {

@@ -22,6 +22,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StudentServiceProvider } from '../providers/student-service/student-service';
 import { UsersProvider } from '../providers/users/users';
 import { ModulesProvider } from '../providers/modules/modules';
+import { MoodleServiceProvider } from '../providers/moodle-service/moodle-service';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import { ModulesProvider } from '../providers/modules/modules';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     StudentServiceProvider,
     UsersProvider,
-    ModulesProvider
+    ModulesProvider,
+    MoodleServiceProvider
   ]
 })
 export class AppModule {}
