@@ -24,7 +24,7 @@ export class MyApp {
     this.pages = [
       { title: 'Inicio', component: HomePage },
       { title: 'Buscar alumnos', component: StudentListPage },
-      { title: 'Contro escolar', component: CareersPage },
+      { title: 'Control escolar', component: CareersPage },
     ];
 
   }

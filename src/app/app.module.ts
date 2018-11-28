@@ -6,7 +6,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { CareersPage } from '../pages/careers/careers';
-import { UserPage } from '../pages/user/user';
 import { ModulesPage } from '../pages/modules/modules';
 import { GroupsPage } from '../pages/groups/groups';
 import { StudentsPage } from '../pages/students/students';
@@ -28,7 +27,6 @@ import { GatoServiceProvider } from '../providers/gato-service/gato-service';
     MyApp,
     HomePage,
     CareersPage,
-    UserPage,
     ModulesPage,
     GroupsPage,
     StudentsPage,
@@ -48,7 +46,6 @@ import { GatoServiceProvider } from '../providers/gato-service/gato-service';
     MyApp,
     HomePage,
     CareersPage,
-    UserPage,
     ModulesPage,
     GroupsPage,
     StudentsPage,

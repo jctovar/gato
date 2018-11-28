@@ -40,8 +40,9 @@
   <ion-fab right bottom #fab>
     <button ion-fab color="secondary"><ion-icon name="add"></ion-icon></button>
     <ion-fab-list side="left">
-      <button ion-fab><ion-icon name="cloud-download"></ion-icon></button>
-      <button ion-fab *ngIf="enrollment" (click)="showConfirm(fab)"><ion-icon name="unlock"></ion-icon></button>
+      <button ion-fab (click)="getEnrollment(fab)"><ion-icon name="cloud-upload"></ion-icon></button>
+      <button ion-fab *ngIf="enrollment" (click)="deleteUser(fab)"><ion-icon name="trash"></ion-icon></button>
+      <button ion-fab *ngIf="enrollment" (click)="changePassword(fab)"><ion-icon name="unlock"></ion-icon></button>
     </ion-fab-list>
   </ion-fab>
 </ion-content>
