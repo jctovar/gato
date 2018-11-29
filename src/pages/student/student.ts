@@ -12,7 +12,9 @@ export class StudentPage {
   user: any;
   items: any;
   moodleUser: any;
-  enrollment: boolean = true;
+  ifEnrollment: boolean = true;
+  notEnrollment: boolean = true;
+  inscriptions: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public toastCtrl: ToastController, public moodleServiceProvider: MoodleServiceProvider, public gatoServiceProvider: GatoServiceProvider, public alertCtrl: AlertController) {
     this.user = navParams.get('item');
@@ -37,8 +39,24 @@ export class StudentPage {
     .subscribe(
       (data) => { // Success
         console.log(JSON.stringify(data));
-        if (typeof data['users'][0] === "undefined") this.enrollment = false;
+        if (typeof data['users'][0] === "undefined") {
+          this.ifEnrollment = false;
+        } else {
+          this.notEnrollment = false;
+        }
         this.moodleUser = data['users'];
+      },
+      (error) =>{
+        console.error(JSON.stringify(error));
+      }
+    )
+
+    this.gatoServiceProvider.getInscriptions(this.user.username)
+    .subscribe(
+      (data) => { // Success
+        console.log(JSON.stringify(data));
+        //if (typeof data['users'][0] === "undefined") this.enrollment = false;
+        this.inscriptions = data;
       },
       (error) =>{
         console.error(JSON.stringify(error));

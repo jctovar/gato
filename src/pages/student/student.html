@@ -4,7 +4,7 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content>
     <ion-card ion-item *ngFor="let item of items">
       <ion-item>
         <ion-avatar item-start>
@@ -21,12 +21,13 @@
           <li>Ingreso: {{ item.generation }}</li>
           <li>Contraseña: {{ item.curp | curp:'password' }}</li>
           <li>Genero: {{ item.curp | curp:'gender' }}</li>
-          <li>CURP: {{ item.curp }}</li>
-          <li>Inscripciones actuales: {{ item.inscriptions }}</li>
         </ul>
       </ion-card-content>
     </ion-card>
     <ion-card ion-item *ngFor="let user of moodleUser">
+      <ion-avatar item-start>
+        <img src="../assets/icon/moodle-icon.png">
+      </ion-avatar>
       <ion-card-content>
         <ul>
           <li>Suspendido: {{ user.suspended }}</li>
@@ -35,14 +36,20 @@
         </ul>
       </ion-card-content>
     </ion-card>
-
+    <ion-list>
+      <ion-list-header *ngIf="inscriptions">Módulos inscritos</ion-list-header>
+      <ion-item ion-item *ngFor="let inscription of inscriptions">
+        <h2>{{ inscription.ch_asignatura_nombre }}</h2>
+        <p><b>{{ inscription.ch_plan_cve }}_{{ inscription.ch_asignatura_cve }}</b> {{ inscription.ch_grupo_cve }}</p>
+      </ion-item>
+    </ion-list>
  
   <ion-fab right bottom #fab>
     <button ion-fab color="secondary"><ion-icon name="add"></ion-icon></button>
     <ion-fab-list side="left">
-      <button ion-fab (click)="getEnrollment(fab)"><ion-icon name="cloud-upload"></ion-icon></button>
-      <button ion-fab *ngIf="enrollment" (click)="deleteUser(fab)"><ion-icon name="trash"></ion-icon></button>
-      <button ion-fab *ngIf="enrollment" (click)="changePassword(fab)"><ion-icon name="unlock"></ion-icon></button>
+      <button ion-fab *ngIf="notEnrollment" (click)="getEnrollment(fab)"><ion-icon name="cloud-upload"></ion-icon></button>
+      <button ion-fab *ngIf="ifEnrollment" (click)="deleteUser(fab)"><ion-icon name="trash"></ion-icon></button>
+      <button ion-fab *ngIf="ifEnrollment" (click)="changePassword(fab)"><ion-icon name="unlock"></ion-icon></button>
     </ion-fab-list>
   </ion-fab>
 </ion-content>

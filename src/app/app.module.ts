@@ -11,6 +11,7 @@ import { GroupsPage } from '../pages/groups/groups';
 import { StudentsPage } from '../pages/students/students';
 import { StudentPage } from '../pages/student/student';
 import { StudentListPage } from '../pages/student-list/student-list';
+import { SetupPage } from '../pages/setup/setup';
 
 import { GravatarPipe } from '../pipes/gravatar/gravatar';
 import { CurpPipe } from '../pipes/curp/curp';
@@ -32,6 +33,7 @@ import { GatoServiceProvider } from '../providers/gato-service/gato-service';
     StudentsPage,
     StudentPage,
     StudentListPage,
+    SetupPage,
     GravatarPipe,
     CurpPipe,
     EmailPipe
@@ -51,6 +53,7 @@ import { GatoServiceProvider } from '../providers/gato-service/gato-service';
     StudentsPage,
     StudentPage,
     StudentListPage,
+    SetupPage,
   ],
   providers: [
     StatusBar,

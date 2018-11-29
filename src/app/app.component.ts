@@ -6,6 +6,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { HomePage } from '../pages/home/home';
 import { CareersPage } from '../pages/careers/careers';
 import { StudentListPage } from '../pages/student-list/student-list';
+import { SetupPage } from '../pages/setup/setup';
 
 @Component({
   templateUrl: 'app.html'
@@ -25,6 +26,7 @@ export class MyApp {
       { title: 'Inicio', component: HomePage },
       { title: 'Buscar alumnos', component: StudentListPage },
       { title: 'Control escolar', component: CareersPage },
+      { title: 'Configuración', component: SetupPage },
     ];
 
   }
