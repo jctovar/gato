@@ -35,4 +35,16 @@ export class GatoServiceProvider {
   getInscriptions(username: string) {
     return this.http.get('https://galadriel.ired.unam.mx/gato/api/students/modules/' + username);
   }
+
+  defaultPassword(curp: string) {
+    var year = '19';
+
+    if(Number(curp.substring(4,6)) < 20) year = '20';
+
+    if(curp != '') {
+      return curp.substring(8,10) + curp.substring(6,8) + year + curp.substring(4,6);
+    } else {
+      return '12345678';
+    }
+  }
 }

@@ -80,7 +80,7 @@ export class StudentPage {
           text: 'Si',
           handler: () => {
             // load function for reset the password
-            this.resetPassword(this.moodleUser[0].id,this.defaultPassword(this.items[0].curp));
+            this.resetPassword(this.moodleUser[0].id,this.gatoServiceProvider.defaultPassword(this.items[0].curp));
           }
         }
       ]
@@ -138,8 +138,7 @@ export class StudentPage {
 
   // Funciones que hay que sacar de aqui
   enrollmentUser(user: any) {
-    console.log('users[0][username]='+this.items[0].username+'&users[0][firstname]='+this.items[0].firstname+'&users[0][lastname]='+this.items[0].lastname+'&users[0][email]='+this.items[0].email+'&users[0][password]='+this.defaultPassword(this.items[0].curp));
-    var newuser = 'users[0][username]='+this.items[0].username+'&users[0][firstname]='+this.items[0].firstname+'&users[0][lastname]='+this.items[0].lastname+'&users[0][email]='+this.items[0].email+'&users[0][password]='+this.defaultPassword(this.items[0].curp);
+    var newuser = 'users[0][username]='+this.items[0].username+'&users[0][firstname]='+this.items[0].firstname+'&users[0][lastname]='+this.items[0].lastname+'&users[0][email]='+this.items[0].email+'&users[0][password]='+this.gatoServiceProvider.defaultPassword(this.items[0].curp);
  
     this.moodleServiceProvider.postEnrollment(newuser)
     .subscribe(
@@ -164,7 +163,6 @@ export class StudentPage {
     )
   }
 
-
   resetPassword(id: string, password: string) {
     this.moodleServiceProvider.resetPassword(id, password)
     .subscribe(
@@ -179,17 +177,5 @@ export class StudentPage {
         console.error(JSON.stringify(error));
       }
     )
-  }
-
-  defaultPassword(curp: string) {
-    var year = '19';
-
-    if(Number(curp.substring(4,6)) < 20) year = '20';
-
-    if(curp != '') {
-      return curp.substring(8,10) + curp.substring(6,8) + year + curp.substring(4,6);
-    } else {
-      return '12345678';
-    }
   }
 }
