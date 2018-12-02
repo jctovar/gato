@@ -93,4 +93,5 @@
     </plugin>
     <engine name="android" spec="7.1.2" />
     <engine name="osx" spec="4.0.2" />
+    <engine name="ios" spec="4.5.5" />
 </widget>
