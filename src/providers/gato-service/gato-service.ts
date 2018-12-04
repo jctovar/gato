@@ -25,7 +25,7 @@ export class GatoServiceProvider {
   }
 
   getStudent(id: any) {
-    return this.http.get('http://galadriel.ired.unam.mx/gato/api/students/id/' + id);
+    return this.http.get('https://galadriel.ired.unam.mx/gato/api/students/id/' + id);
   }
 
   getSearchStudent(name: string) {

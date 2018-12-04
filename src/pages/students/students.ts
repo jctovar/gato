@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, ToastController, FabContainer } from 'ionic-angular';
 import { StudentPage } from '../../pages/student/student';
 import { GatoServiceProvider } from '../../providers/gato-service/gato-service';
 
@@ -37,6 +37,10 @@ export class StudentsPage {
     this.navCtrl.push(StudentPage, {
       item: item
     });
+  }
+
+  getCSV(fab: FabContainer) {
+    fab.close();
   }
 
 }
