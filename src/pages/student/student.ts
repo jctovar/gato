@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController, ToastController, FabContainer } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, FabContainer } from 'ionic-angular';
 import { GatoServiceProvider } from '../../providers/gato-service/gato-service';
 import { MoodleServiceProvider } from '../../providers/moodle-service/moodle-service';
+import { ToastServiceProvider } from '../../providers/toast-service/toast-service';
 
 @IonicPage()
 @Component({
@@ -16,7 +17,7 @@ export class StudentPage {
   notEnrollment: boolean = true;
   inscriptions: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public toastCtrl: ToastController, public moodleServiceProvider: MoodleServiceProvider, public gatoServiceProvider: GatoServiceProvider, public alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public toastServiceProvider: ToastServiceProvider, public moodleServiceProvider: MoodleServiceProvider, public gatoServiceProvider: GatoServiceProvider, public alertCtrl: AlertController) {
     this.user = navParams.get('item');
     this.getStudent(this.user.id);
     this.getInscriptions(this.user.username);
@@ -76,7 +77,7 @@ export class StudentPage {
   getEnrollment(fab: FabContainer) {
     fab.close();
     const confirm = this.alertCtrl.create({
-      title: 'Reiniciar contraseña?',
+      title: 'Matricular?',
       message: 'Esta seguro de matricular este usuario?',
       buttons: [
         {
@@ -125,11 +126,7 @@ export class StudentPage {
     this.moodleServiceProvider.resetPassword(id, password)
     .subscribe(
       (data) => { // Success
-        const toast = this.toastCtrl.create({
-          message: 'Contraseña actualizada',
-          duration: 3000
-        });
-        toast.present();
+        this.toastServiceProvider.create('Se reinicio la contraseña!');
       },
       (error) =>{
         console.error(JSON.stringify(error));
@@ -145,6 +142,8 @@ export class StudentPage {
     .subscribe(
       (data) => { // Success
         console.log(JSON.stringify(data));
+        this.checkEnrollment(this.user.username);
+        this.toastServiceProvider.create('Se matriculo al usuario!');
       },
       (error) =>{
         console.error(JSON.stringify(error));
@@ -157,6 +156,8 @@ export class StudentPage {
     .subscribe(
       (data) => { // Success
         console.log(JSON.stringify(data));
+        this.checkEnrollment(this.user.username);
+        this.toastServiceProvider.create('Se ha eliminado al usuario!');
       },
       (error) =>{
         console.error(JSON.stringify(error));

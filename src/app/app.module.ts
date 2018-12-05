@@ -22,6 +22,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { MoodleServiceProvider } from '../providers/moodle-service/moodle-service';
 import { GatoServiceProvider } from '../providers/gato-service/gato-service';
+import { ToastServiceProvider } from '../providers/toast-service/toast-service';
+import { AlertServiceProvider } from '../providers/alert-service/alert-service';
 
 @NgModule({
   declarations: [
@@ -60,7 +62,9 @@ import { GatoServiceProvider } from '../providers/gato-service/gato-service';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     MoodleServiceProvider,
-    GatoServiceProvider
+    GatoServiceProvider,
+    ToastServiceProvider,
+    AlertServiceProvider
   ]
 })
 export class AppModule {}
