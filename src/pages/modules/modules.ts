@@ -17,23 +17,17 @@ export class ModulesPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, public gatoServiceProvider: GatoServiceProvider) {
     this.career = navParams.get('item');
     this.title = this.career.name;
+    this.getModules(this.career.name);
   }
 
-  ionViewDidLoad(){
-    console.log('ionViewDidLoad ModulesPage');
-    this.gatoServiceProvider.getModules(this.career.name)
-    .subscribe(
-      (data) => { // Success
-        this.items = data;
-      },
-      (error) =>{
-        console.error(JSON.stringify(error));
-      }
-    )
+  getModules(careerName) {
+    this.gatoServiceProvider.getModules(careerName)
+    .then(data => {
+      this.items = data;
+    });
   }
 
   itemTapped(event, item) {
-    // That's right, we're pushing to ourselves!
     this.navCtrl.push(GroupsPage, {
       item: item
     });

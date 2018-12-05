@@ -4,4 +4,8 @@ page-student {
         margin: 0;
         padding: 0;
     }
+
+    ion-content {
+        user-select: text;
+    }
 }

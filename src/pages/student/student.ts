@@ -18,50 +18,35 @@ export class StudentPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public toastCtrl: ToastController, public moodleServiceProvider: MoodleServiceProvider, public gatoServiceProvider: GatoServiceProvider, public alertCtrl: AlertController) {
     this.user = navParams.get('item');
-    console.log(this.user.username);
+    this.getStudent(this.user.id);
+    this.getInscriptions(this.user.username);
+    this.checkEnrollment(this.user.username);
   }
   
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad StudentPage');
-    
-    this.gatoServiceProvider.getStudent(this.user.id)
-    .subscribe(
-      (data) => { // Success
-        console.log(JSON.stringify(data));
-        this.items = data;
-      },
-      (error) =>{
-        console.error(JSON.stringify(error));
+  checkEnrollment(usernameStudent) {
+    this.moodleServiceProvider.searchUsername(usernameStudent)
+    .then(data => {
+      if (typeof data['users'][0] === "undefined") {
+        this.ifEnrollment = false;
+      } else {
+        this.notEnrollment = false;
       }
-    );
-    
-    this.moodleServiceProvider.searchUsername(this.user.username)
-    .subscribe(
-      (data) => { // Success
-        console.log(JSON.stringify(data));
-        if (typeof data['users'][0] === "undefined") {
-          this.ifEnrollment = false;
-        } else {
-          this.notEnrollment = false;
-        }
-        this.moodleUser = data['users'];
-      },
-      (error) =>{
-        console.error(JSON.stringify(error));
-      }
-    )
+      this.moodleUser = data['users'];
+    });
+  }
 
-    this.gatoServiceProvider.getInscriptions(this.user.username)
-    .subscribe(
-      (data) => { // Success
-        console.log(JSON.stringify(data));
-        //if (typeof data['users'][0] === "undefined") this.enrollment = false;
-        this.inscriptions = data;
-      },
-      (error) =>{
-        console.error(JSON.stringify(error));
-      }
-    )
+  getStudent(idStudent) {
+    this.gatoServiceProvider.getStudent(idStudent)
+    .then(data => {
+      this.items = data;
+    });
+  }
+
+  getInscriptions(Student) {
+    this.gatoServiceProvider.getInscriptions(Student)
+    .then(data => {
+      this.inscriptions = data;
+    });
   }
 
   changePassword(fab: FabContainer) {
@@ -136,6 +121,22 @@ export class StudentPage {
     confirm.present();
   }
 
+  resetPassword(id: string, password: string) {
+    this.moodleServiceProvider.resetPassword(id, password)
+    .subscribe(
+      (data) => { // Success
+        const toast = this.toastCtrl.create({
+          message: 'Contraseña actualizada',
+          duration: 3000
+        });
+        toast.present();
+      },
+      (error) =>{
+        console.error(JSON.stringify(error));
+      }
+    )
+  }
+
   // Funciones que hay que sacar de aqui
   enrollmentUser(user: any) {
     var newuser = 'users[0][username]='+this.items[0].username+'&users[0][firstname]='+this.items[0].firstname+'&users[0][lastname]='+this.items[0].lastname+'&users[0][email]='+this.items[0].email+'&users[0][password]='+this.gatoServiceProvider.defaultPassword(this.items[0].curp);
@@ -156,22 +157,6 @@ export class StudentPage {
     .subscribe(
       (data) => { // Success
         console.log(JSON.stringify(data));
-      },
-      (error) =>{
-        console.error(JSON.stringify(error));
-      }
-    )
-  }
-
-  resetPassword(id: string, password: string) {
-    this.moodleServiceProvider.resetPassword(id, password)
-    .subscribe(
-      (data) => { // Success
-        const toast = this.toastCtrl.create({
-          message: 'Contraseña actualizada',
-          duration: 3000
-        });
-        toast.present();
       },
       (error) =>{
         console.error(JSON.stringify(error));

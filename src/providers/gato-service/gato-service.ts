@@ -3,37 +3,74 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class GatoServiceProvider {
+  apiUrl = 'https://galadriel.ired.unam.mx/gato/api';
 
   constructor(public http: HttpClient) {
     console.log('Hello GatoServiceProvider Provider');
   }
 
   getCareers() {
-    return this.http.get('https://galadriel.ired.unam.mx/gato/api/courses/careers');
+    return new Promise(resolve => {
+      this.http.get(this.apiUrl+'/courses/careers').subscribe(data => {
+        resolve(data);
+      }, err => {
+        console.log(err);
+      });
+    });
   }
 
   getModules(career: string) {
-    return this.http.get('https://galadriel.ired.unam.mx/gato/api/courses/modules/' + career);
+    return new Promise(resolve => {
+      this.http.get(this.apiUrl+'/courses/modules/' + career).subscribe(data => {
+        resolve(data);
+      }, err => {
+        console.log(err);
+      });
+    });
   }
 
   getGroups(career: string, module: string) {
-    return this.http.get('https://galadriel.ired.unam.mx/gato/api/courses/groups/' + career + '/' + module);
+    return new Promise(resolve => {
+      this.http.get(this.apiUrl+'/courses/groups/' + career + '/' + module).subscribe(data => {
+        resolve(data);
+      }, err => {
+        console.log(err);
+      });
+    });
   }
 
   getStudents(career: string, module: string, group: string) {
-      return this.http.get('https://galadriel.ired.unam.mx/gato/api/courses/students/' + career + '/' + module + '/' + group);
+    return new Promise(resolve => {
+      this.http.get(this.apiUrl+'/courses/students/' + career + '/' + module + '/' + group).subscribe(data => {
+        resolve(data);
+      }, err => {
+        console.log(err);
+      });
+    });
   }
 
   getStudent(id: any) {
-    return this.http.get('https://galadriel.ired.unam.mx/gato/api/students/id/' + id);
+    return new Promise(resolve => {
+      this.http.get(this.apiUrl+'/students/id/' + id).subscribe(data => {
+        resolve(data);
+      }, err => {
+        console.log(err);
+      });
+    });
+  }
+
+  getInscriptions(username: string) {
+    return new Promise(resolve => {
+      this.http.get(this.apiUrl+'/students/modules/' + username).subscribe(data => {
+        resolve(data);
+      }, err => {
+        console.log(err);
+      });
+    });
   }
 
   getSearchStudent(name: string) {
     return this.http.get('https://galadriel.ired.unam.mx/gato/api/students/name/' + name);
-  }
-
-  getInscriptions(username: string) {
-    return this.http.get('https://galadriel.ired.unam.mx/gato/api/students/modules/' + username);
   }
 
   defaultPassword(curp: string) {

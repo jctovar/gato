@@ -16,24 +16,17 @@ export class GroupsPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, public gatoServiceProvider: GatoServiceProvider) {
     this.career = navParams.get('item');
     this.title = this.career.module;
-    console.log(JSON.stringify(this.career));
+    this.getGroups(this.career.career, this.career.module);
   }
 
-  ionViewDidLoad(){
-    console.log('ionViewDidLoad GroupsPage');
-    this.gatoServiceProvider.getGroups(this.career.career, this.career.module)
-    .subscribe(
-      (data) => { // Success
-        this.items = data;
-      },
-      (error) =>{
-        console.error(JSON.stringify(error));
-      }
-    )
+  getGroups(careerName, careerModule) {
+    this.gatoServiceProvider.getGroups(careerName, careerModule)
+    .then(data => {
+      this.items = data;
+    });
   }
 
   itemTapped(event, item) {
-    // That's right, we're pushing to ourselves!
     this.navCtrl.push(StudentsPage, {
       item: item
     });

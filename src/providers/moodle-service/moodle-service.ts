@@ -5,13 +5,21 @@ import { Injectable } from '@angular/core';
 export class MoodleServiceProvider {
   host: string = 'https://aulas.iztacala.unam.mx/webservice/rest/server.php';
   token: string = "92550f65639328cc3836c63e8de96b21";
+  apiUrl: string = 'https://aulas.iztacala.unam.mx/webservice/rest/server.php?wstoken=' + this.token;
 
   constructor(public http: HttpClient) {
     console.log('Hello MoodleServiceProvider Provider');
   }
 
   searchUsername(username: string) {
-    return this.http.get(this.host + '?wstoken=' + this.token + '&wsfunction=core_user_get_users&criteria%5B0%5D%5Bkey%5D=username&moodlewsrestformat=json&criteria%5B0%5D%5Bvalue%5D=' + username);
+    //return this.http.get(this.host + '?wstoken=' + this.token + '&wsfunction=core_user_get_users&criteria%5B0%5D%5Bkey%5D=username&moodlewsrestformat=json&criteria%5B0%5D%5Bvalue%5D=' + username);
+    return new Promise(resolve => {
+      this.http.get(this.apiUrl+'&wsfunction=core_user_get_users&criteria%5B0%5D%5Bkey%5D=username&moodlewsrestformat=json&criteria%5B0%5D%5Bvalue%5D=' + username).subscribe(data => {
+        resolve(data);
+      }, err => {
+        console.log(err);
+      });
+    });
   }
 
   resetPassword(id: string, password: string) {

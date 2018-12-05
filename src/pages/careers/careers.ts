@@ -11,25 +11,19 @@ export class CareersPage {
   items: any;
 
   constructor(public navCtrl: NavController, public gatoServiceProvider: GatoServiceProvider) {
+    this.getCareers();
   }
 
-  ionViewDidLoad(){
+  getCareers() {
     this.gatoServiceProvider.getCareers()
-    .subscribe(
-      (data) => { // Success
-        this.items = data;
-      },
-      (error) =>{
-        console.error(JSON.stringify(error));
-      }
-    )
+    .then(data => {
+      this.items = data;
+    });
   }
 
   itemTapped(event, item) {
-    // That's right, we're pushing to ourselves!
     this.navCtrl.push(ModulesPage, {
       item: item
     });
   }
-
 }

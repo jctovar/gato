@@ -16,20 +16,14 @@ export class StudentsPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, public gatoServiceProvider: GatoServiceProvider) {
     this.career = navParams.get('item');
     this.title = this.career.module + ' grupo ' + this.career.group1;
+    this.getStudents(this.career.career, this.career.module, this.career.group1);
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad StudentsPage');
-    this.gatoServiceProvider.getStudents(this.career.career, this.career.module, this.career.group1)
-    .subscribe(
-      (data) => { // Success
-        console.log(JSON.stringify(data));
-        this.items = data;
-      },
-      (error) =>{
-        console.error(JSON.stringify(error));
-      }
-    )
+  getStudents(careerName, careerModule, CareerGroup) {
+    this.gatoServiceProvider.getStudents(careerName, careerModule, CareerGroup)
+    .then(data => {
+      this.items = data;
+    });
   }
 
   itemTapped(event, item) {
