@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { GroupsPage } from '../../pages/groups/groups';
 import { GatoServiceProvider } from '../../providers/gato-service/gato-service';
 
 
@@ -28,7 +27,7 @@ export class ModulesPage {
   }
 
   itemTapped(event, item) {
-    this.navCtrl.push(GroupsPage, {
+    this.navCtrl.push('GroupsPage', {
       item: item
     });
   }

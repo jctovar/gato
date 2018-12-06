@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { ModulesPage } from '../../pages/modules/modules';
 import { GatoServiceProvider } from '../../providers/gato-service/gato-service';
 
 @Component({
@@ -22,7 +21,7 @@ export class CareersPage {
   }
 
   itemTapped(event, item) {
-    this.navCtrl.push(ModulesPage, {
+    this.navCtrl.push('ModulesPage', {
       item: item
     });
   }

@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { StudentsPage } from '../../pages/students/students';
 import { GatoServiceProvider } from '../../providers/gato-service/gato-service';
 
 @IonicPage()
@@ -27,7 +26,7 @@ export class GroupsPage {
   }
 
   itemTapped(event, item) {
-    this.navCtrl.push(StudentsPage, {
+    this.navCtrl.push('StudentsPage', {
       item: item
     });
   }

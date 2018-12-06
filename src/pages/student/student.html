@@ -5,6 +5,9 @@
 </ion-header>
 
 <ion-content>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
     <ion-card ion-item *ngFor="let item of items">
       <ion-item>
         <ion-avatar item-start>
@@ -47,7 +50,7 @@
   <ion-fab right bottom #fab>
     <button ion-fab color="secondary"><ion-icon name="add"></ion-icon></button>
     <ion-fab-list side="left">
-      <button ion-fab *ngIf="notEnrollment" (click)="getEnrollment(fab)"><ion-icon name="cloud-upload"></ion-icon></button>
+      <button ion-fab *ngIf="notEnrollment" (click)="makeEnrollment(fab)"><ion-icon name="cloud-upload"></ion-icon></button>
       <button ion-fab *ngIf="ifEnrollment" (click)="deleteUser(fab)"><ion-icon name="trash"></ion-icon></button>
       <button ion-fab *ngIf="ifEnrollment" (click)="changePassword(fab)"><ion-icon name="unlock"></ion-icon></button>
     </ion-fab-list>

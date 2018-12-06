@@ -1,9 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { StudentPage } from '../../pages/student/student';
 import { GatoServiceProvider } from '../../providers/gato-service/gato-service';
 
-@IonicPage()
 @Component({
   selector: 'page-student-list',
   templateUrl: 'student-list.html',
@@ -42,7 +40,7 @@ export class StudentListPage {
 
   itemTapped(event, item) {
     // That's right, we're pushing to ourselves!
-    this.navCtrl.push(StudentPage, {
+    this.navCtrl.push('StudentPage', {
       item: item
     });
   }
