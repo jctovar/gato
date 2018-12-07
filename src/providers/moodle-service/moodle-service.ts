@@ -66,4 +66,15 @@ export class MoodleServiceProvider {
       });
     });
   }
+
+  insertUserInCourse(idUser: string, idCourse: string) {
+    return new Promise(resolve => {
+      this.http.get(this.apiUrl+'&wsfunction=enrol_manual_enrol_users&moodlewsrestformat=json&enrolments[0][roleid]=5&enrolments[0][userid]=' + idUser + '&enrolments[0][courseid]=' + idCourse).subscribe(data => {
+        this.toastServiceProvider.create('Se ha inscrito al usuario!');
+        resolve(data);
+      }, err => {
+        console.log(err);
+      });
+    });
+  }
 }
