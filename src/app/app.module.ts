@@ -7,7 +7,7 @@ import { SharedModule } from './shared.module';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { CareersPage } from '../pages/careers/careers';
-import { StudentListPage } from '../pages/student-list/student-list';
+import { SearchStudentsPage } from '../pages/search-students/search-students';
 import { SetupPage } from '../pages/setup/setup';
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -23,7 +23,7 @@ import { AlertServiceProvider } from '../providers/alert-service/alert-service';
     MyApp,
     HomePage,
     CareersPage,
-    StudentListPage,
+    SearchStudentsPage,
     SetupPage,
   ],
   imports: [
@@ -37,7 +37,7 @@ import { AlertServiceProvider } from '../providers/alert-service/alert-service';
     MyApp,
     HomePage,
     CareersPage,
-    StudentListPage,
+    SearchStudentsPage,
     SetupPage,
   ],
   providers: [

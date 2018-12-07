@@ -31,14 +31,14 @@ export class AlertServiceProvider {
         title,
         message,
         buttons: [{
-          text: 'Cancel',
+          text: 'Cancelar',
           role: 'cancel',
           handler: () => {
             confirm.dismiss().then(() => resolve(false));
             return false;
           }
         }, {
-          text: 'Yes',
+          text: 'Aceptar',
           handler: () => {
             confirm.dismiss().then(() => resolve(true));
             return false;

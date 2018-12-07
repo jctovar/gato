@@ -35,7 +35,7 @@ export class MoodleServiceProvider {
   resetPassword(id: string, password: string) {
     return new Promise(resolve => {
       this.http.get(this.apiUrl+'&wsfunction=core_user_update_users&moodlewsrestformat=json&users[0][password]=' + password + '&users[0][id]=' + id).subscribe(data => {
-        this.toastServiceProvider.create('Se reinicio la contraseña!');
+        this.toastServiceProvider.create('Se reinicio la contraseña del usuario!');
         resolve(data);
       }, err => {
         console.log(err);
@@ -43,12 +43,11 @@ export class MoodleServiceProvider {
     });
   }
 
-  makeEnrollment(user: any) {
+  addUser(user: any) {
     var datauser = 'users[0][username]='+user[0].username+'&users[0][firstname]='+user[0].firstname+'&users[0][lastname]='+user[0].lastname+'&users[0][email]='+user[0].email+'&users[0][password]='+this.gatoServiceProvider.defaultPassword(user[0].curp);
     
     return new Promise(resolve => {
       this.http.get(this.apiUrl+'&wsfunction=core_user_create_users&moodlewsrestformat=json&' + datauser).subscribe(data => {
-        this.toastServiceProvider.create('Se matriculo al usuario!');
         resolve(data);
       }, err => {
         console.log(err);
@@ -67,10 +66,9 @@ export class MoodleServiceProvider {
     });
   }
 
-  insertUserInCourse(idUser: string, idCourse: string) {
+  enrollmentUser(idUser: string, idCourse: string) {
     return new Promise(resolve => {
       this.http.get(this.apiUrl+'&wsfunction=enrol_manual_enrol_users&moodlewsrestformat=json&enrolments[0][roleid]=5&enrolments[0][userid]=' + idUser + '&enrolments[0][courseid]=' + idCourse).subscribe(data => {
-        this.toastServiceProvider.create('Se ha inscrito al usuario!');
         resolve(data);
       }, err => {
         console.log(err);

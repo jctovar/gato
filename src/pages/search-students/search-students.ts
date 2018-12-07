@@ -3,10 +3,10 @@ import { NavController, NavParams } from 'ionic-angular';
 import { GatoServiceProvider } from '../../providers/gato-service/gato-service';
 
 @Component({
-  selector: 'page-student-list',
-  templateUrl: 'student-list.html',
+  selector: 'page-search-students',
+  templateUrl: 'search-students.html',
 })
-export class StudentListPage {
+export class SearchStudentsPage {
   loading: Boolean;
   items: any;
 
@@ -14,7 +14,7 @@ export class StudentListPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad StudentListPage');
+    console.log('ionViewDidLoad SearchStudentsPage');
   }
 
   searchStudent(query: any) {
@@ -44,5 +44,4 @@ export class StudentListPage {
       item: item
     });
   }
-
 }

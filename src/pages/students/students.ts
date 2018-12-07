@@ -16,14 +16,13 @@ export class StudentsPage {
   title: string;
   shortname: string;
   idCourse: string;
-  candidates: string;
+  count: number = 0;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public toastServiceProvider: ToastServiceProvider, public alertServiceProvider: AlertServiceProvider, public moodleServiceProvider: MoodleServiceProvider, public gatoServiceProvider: GatoServiceProvider) {
     this.career = navParams.get('item');
-    this.title = this.career.module + ' grupo ' + this.career.group1;
+    this.title = this.career.module + '_' + this.career.group1;
     this.getStudents(this.career.career, this.career.module, this.career.group1);
     this.shortname = this.career.career + '_' + this.career.module + '_' + this.career.group1;
-    console.log(this.shortname);
   }
 
   getStudents(careerName, careerModule, CareerGroup) {
@@ -34,13 +33,12 @@ export class StudentsPage {
   }
 
   itemTapped(event, item) {
-    // That's right, we're pushing to ourselves!
     this.navCtrl.push('StudentPage', {
       item: item
     });
   }
 
-  getCSV(fab: FabContainer) {
+  makeEnrollments(fab: FabContainer) {
     fab.close();
     this.moodleServiceProvider.searchCourse(this.shortname)
     .then(data => {
@@ -48,7 +46,7 @@ export class StudentsPage {
       this.idCourse = data['courses'][0].id;
     });
     
-    this.alertServiceProvider.presentAlertWithCallback('Matricular usuarios?','Esta seguro de matricular todos los usuarios en ' + this.shortname + '?')
+    this.alertServiceProvider.presentAlertWithCallback('Matricular usuarios?','Esta seguro de matricular todos los usuarios en "' + this.shortname + '"?')
     .then(data => {
       if(data) {
         Object.keys(this.items).forEach(key => { 
@@ -58,15 +56,14 @@ export class StudentsPage {
               
             } else {
               console.log('userId: ' + JSON.stringify(data['users'][0].id));
-              this.moodleServiceProvider.insertUserInCourse(data['users'][0].id, this.idCourse)
+              this.moodleServiceProvider.enrollmentUser(data['users'][0].id, this.idCourse)
               .then(data => {
-                
+                this.count += 1;
+                console.log(this.count);
               });
             }
-
-            
           });
-        });
+        }); 
       }
     });
   }

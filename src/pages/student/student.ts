@@ -74,9 +74,9 @@ export class StudentPage {
 
   makeEnrollment(fab: FabContainer) {
     fab.close();
-    this.alertServiceProvider.presentAlertWithCallback('Matricular usuario?','Esta seguro de matricular este usuario?')
+    this.alertServiceProvider.presentAlertWithCallback('Añadir usuario?','Esta seguro de añadir este usuario?')
     .then(data => {
-      if(data) this.moodleServiceProvider.makeEnrollment(this.items);
+      if(data) this.moodleServiceProvider.addUser(this.items);
       this.loadDatas();
     });
   }
